@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- 헤더 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="모닝 브리핑"
+            android:textColor="@color/text"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp" />
+
+        <TextView
+            android:id="@+id/tvNext"
+            style="@style/Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/sub"
+            android:text="알람이 꺼져 있어요" />
+
+        <!-- 지금 듣기 -->
+        <Button
+            android:id="@+id/btnPlay"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/btn_primary"
+            android:text="▶  지금 들어보기"
+            android:textColor="#FFFFFFFF"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:stateListAnimator="@null" />
+
+        <Button
+            android:id="@+id/btnStop"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/btn_outline"
+            android:text="■  멈추기"
+            android:textColor="@color/accent_dark"
+            android:textSize="15sp"
+            android:stateListAnimator="@null" />
+
+        <!-- 알람 -->
+        <LinearLayout style="@style/Card">
+
+            <TextView style="@style/CardTitle" android:text="기상 알람" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvTime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="오전 7:00"
+                    android:textColor="@color/text"
+                    android:textSize="40sp"
+                    android:textStyle="bold"
+                    android:background="?android:attr/selectableItemBackground" />
+
+                <Switch
+                    android:id="@+id/swEnabled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="시간을 누르면 바꿀 수 있어요"
+                android:textColor="@color/sub"
+                android:textSize="13sp" />
+
+            <CheckBox
+                android:id="@+id/cbWeekdays"
+                style="@style/Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="평일(월~금)에만 울리기" />
+
+            <TextView
+                android:id="@+id/tvExactWarn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="⚠ 정확한 알람 권한이 꺼져 있어요. 여기를 눌러 허용해 주세요."
+                android:textColor="@color/accent_dark"
+                android:textSize="14sp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <!-- 날씨 위치 -->
+        <LinearLayout style="@style/Card">
+
+            <TextView style="@style/CardTitle" android:text="날씨 지역" />
+
+            <TextView
+                android:id="@+id/tvPlace"
+                style="@style/Body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="서울" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etCity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="도시 이름 (예: 부산)"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:textColor="@color/text"
+                    android:textColorHint="@color/sub" />
+
+                <Button
+                    android:id="@+id/btnSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/btn_outline"
+                    android:paddingStart="18dp"
+                    android:paddingEnd="18dp"
+                    android:text="검색"
+                    android:textColor="@color/accent_dark"
+                    android:stateListAnimator="@null" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnLocation"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_outline"
+                android:text="📍 현재 위치로 설정"
+                android:textColor="@color/accent_dark"
+                android:stateListAnimator="@null" />
+        </LinearLayout>
+
+        <!-- 읽기 설정 -->
+        <LinearLayout style="@style/Card">
+
+            <TextView style="@style/CardTitle" android:text="뉴스 개수" />
+
+            <RadioGroup
+                android:id="@+id/rgNews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton android:id="@+id/rbNews3" style="@style/Body"
+                    android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="3개" />
+                <RadioButton android:id="@+id/rbNews5" style="@style/Body"
+                    android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="5개" />
+                <RadioButton android:id="@+id/rbNews10" style="@style/Body"
+                    android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="10개" />
+            </RadioGroup>
+
+            <TextView style="@style/CardTitle" android:layout_marginTop="14dp" android:text="말하기 속도" />
+
+            <RadioGroup
+                android:id="@+id/rgRate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton android:id="@+id/rbSlow" style="@style/Body"
+                    android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="천천히" />
+                <RadioButton android:id="@+id/rbNormal" style="@style/Body"
+                    android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="보통" />
+                <RadioButton android:id="@+id/rbFast" style="@style/Body"
+                    android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:text="빠르게" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/tvTtsSettings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:padding="4dp"
+                android:text="음성(TTS) 엔진 설정 열기 ›"
+                android:textColor="@color/sky"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="뉴스: 구글 뉴스 · 날씨: Open-Meteo"
+            android:textColor="@color/sub"
+            android:textSize="12sp" />
+    </LinearLayout>
+</ScrollView>
